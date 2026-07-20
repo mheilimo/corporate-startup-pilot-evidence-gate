@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review 20 corporate startup pilot evidence gates locally in the browser and export the complete decision record as CSV.">
+  <link rel="canonical" href="https://mheilimo.github.io/corporate-startup-pilot-evidence-gate/">
+  <title>Corporate Startup Pilot Evidence Gate</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <p class="eyebrow">Free local worksheet</p>
+      <h1>Corporate Startup Pilot Evidence Gate</h1>
+      <p class="lead">Separate a persuasive demo from the evidence needed to commit internal pilot resources.</p>
+      <p class="privacy">No account, upload, analytics, browser storage or runtime network request.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="summary" aria-label="Review summary">
+      <div><strong id="visible-count">20</strong><span>visible gates</span></div>
+      <div><strong id="supported-count">0</strong><span>supported</span></div>
+      <div><strong id="repair-count">20</strong><span>need repair</span></div>
+      <div><strong id="unreviewed-count">20</strong><span>unreviewed decisions</span></div>
+    </section>
+
+    <section class="controls" aria-label="Gate controls">
+      <label>Search
+        <input id="search-input" type="search" placeholder="Decision question, group, dimension or next artefact">
+      </label>
+      <label>Gate group
+        <select id="group-filter"><option value="all">All groups</option></select>
+      </label>
+      <label>Evidence state
+        <select id="state-filter">
+          <option value="all">All states</option>
+          <option value="supported">Supported</option>
+          <option value="partial">Partial</option>
+          <option value="missing">Missing</option>
+          <option value="conflicting">Conflicting</option>
+          <option value="stale">Stale</option>
+          <option value="not_applicable">Not applicable</option>
+        </select>
+      </label>
+      <div class="actions">
+        <button id="reset-button" type="button" class="secondary">Reset</button>
+        <button id="export-button" type="button">Export 20 gates as CSV</button>
+      </div>
+      <p id="action-status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="gate-list" class="gate-list" aria-live="polite"></section>
+
+    <section class="boundary">
+      <h2>Keep the Decision Human</h2>
+      <p>Every company and internal policy differs. These are starter gates, not a universal pilot policy. This worksheet does not verify evidence, decide strategic fit, approve a pilot, perform security or legal review, provide M&amp;A or investment advice, calculate a DDScore, or replace full due diligence and accountable human judgement.</p>
+      <p class="maker">Built by the team behind DDScore at Playful Pixels Oy.</p>
+      <a class="ddscore-link" href="https://www.ddscore.ai/for-investor/?utm_source=github-pages&amp;utm_medium=referral&amp;utm_campaign=ddscore-30d-jul-2026&amp;utm_content=corporate-startup-pilot-evidence-gate-review-tool-a" target="_blank" rel="noopener">See DDScore for investors and screening teams</a>
+    </section>
+  </main>
+
+  <template id="gate-card-template">
+    <article class="gate-card">
+      <div class="gate-meta">
+        <span class="gate-id"></span>
+        <span class="gate-group"></span>
+        <span class="gate-dimension"></span>
+      </div>
+      <h2 class="gate-question"></h2>
+      <div class="editor-grid">
+        <label>Evidence state
+          <select class="current-state">
+            <option value="supported">Supported</option>
+            <option value="partial">Partial</option>
+            <option value="missing">Missing</option>
+            <option value="conflicting">Conflicting</option>
+            <option value="stale">Stale</option>
+            <option value="not_applicable">Not applicable</option>
+          </select>
+        </label>
+        <label>Evidence reference
+          <input class="evidence-ref" type="text" placeholder="Internal path or redacted reference">
+        </label>
+        <label>Observed date
+          <input class="observed-at" type="date">
+        </label>
+        <label>Evidence hash
+          <input class="evidence-hash" type="text" placeholder="Optional content fingerprint">
+        </label>
+        <label>Owner
+          <input class="owner" type="text">
+        </label>
+        <label>Next artefact
+          <input class="next-artifact" type="text">
+        </label>
+        <label>Human decision
+          <select class="reviewer-decision">
+            <option value="unreviewed">Unreviewed</option>
+            <option value="proceed">Proceed</option>
+            <option value="repair">Repair</option>
+            <option value="hold">Hold</option>
+            <option value="stop">Stop</option>
+            <option value="manual_review">Manual review</option>
+            <option value="not_applicable">Not applicable</option>
+          </select>
+        </label>
+        <label class="wide">Reviewer rationale
+          <textarea class="reviewer-rationale" rows="2" placeholder="Human rationale stays separate from the evidence state"></textarea>
+        </label>
+      </div>
+      <p class="gate-footnote"></p>
+    </article>
+  </template>
+
+  <script src="gates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
